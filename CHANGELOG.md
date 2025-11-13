@@ -1,4 +1,14 @@
-### Changed up a lot, added class as submodule and added PracticeQuestionExtractor.py to cut out the exercises that was adapted from a script from last semester. (HEAD -> main)
+### Removed the other notebook from the project root. Updated Changelog. (HEAD -> main)
+>Thu, 13 Nov 2025 13:10:13 -0600
+
+>Author: thegreekgeek (thegreekgeekster@gmail.com)
+
+>Commiter: thegreekgeek (thegreekgeekster@gmail.com)
+
+
+
+
+### Changed up a lot, added class as submodule and added PracticeQuestionExtractor.py to cut out the exercises that was adapted from a script from last semester.
 >Thu, 13 Nov 2025 13:07:21 -0600
 
 >Author: thegreekgeek (thegreekgeekster@gmail.com)
@@ -8,7 +18,17 @@
 
 
 
-### Created using Colab (origin/main, origin/HEAD)
+### Created using Colab
+>Tue, 9 Sep 2025 09:56:27 -0500
+
+>Author: thegreekgeek (thegreekgeekster@gmail.com)
+
+>Commiter: thegreekgeek (thegreekgeekster@gmail.com)
+
+
+
+
+### Created using Colab
 >Tue, 2 Sep 2025 09:26:28 -0500
 
 >Author: thegreekgeek (thegreekgeekster@gmail.com)
