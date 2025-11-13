@@ -1,4 +1,14 @@
-### Removed the other notebook from the project root. Updated Changelog. (HEAD -> main)
+### Did some more things, prettifying mostly. (HEAD -> main)
+>Thu, 13 Nov 2025 13:37:52 -0600
+
+>Author: thegreekgeek (thegreekgeekster@gmail.com)
+
+>Commiter: thegreekgeek (thegreekgeekster@gmail.com)
+
+
+
+
+### Removed the other notebook from the project root. Updated Changelog. (origin/main, origin/HEAD)
 >Thu, 13 Nov 2025 13:10:13 -0600
 
 >Author: thegreekgeek (thegreekgeekster@gmail.com)
