@@ -1,4 +1,14 @@
-### Maybe outputting it in html will work better... (HEAD -> main)
+### That didn't work (HEAD -> main)
+>Thu, 13 Nov 2025 13:40:47 -0600
+
+>Author: thegreekgeek (thegreekgeekster@gmail.com)
+
+>Commiter: thegreekgeek (thegreekgeekster@gmail.com)
+
+
+
+
+### Maybe outputting it in html will work better... (origin/main, origin/HEAD)
 >Thu, 13 Nov 2025 13:40:03 -0600
 
 >Author: thegreekgeek (thegreekgeekster@gmail.com)
@@ -8,7 +18,7 @@
 
 
 
-### Did some more things, prettifying mostly. (origin/main, origin/HEAD)
+### Did some more things, prettifying mostly.
 >Thu, 13 Nov 2025 13:37:52 -0600
 
 >Author: thegreekgeek (thegreekgeekster@gmail.com)
