@@ -7,6 +7,9 @@ import nbformat
 # Match %%writefile Something.java
 writefile_pattern = re.compile(r"^%%writefile\s+([^\s]+\.java)", re.IGNORECASE)
 
+
+java_fence_pattern = re.compile(r"```java\s*(.*?)```", re.DOTALL | re.IGNORECASE)
+
 # Get directory of this script
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -31,38 +34,72 @@ for nb_file in notebook_files:
     print(f"Processing {nb_file}...")
 
     for cell_index, cell in enumerate(nb.cells):
-        if cell.cell_type != "code":
-            continue
+        # CASE 1 — Code cell with %%writefile (unchanged)
+        if cell.cell_type == "code":
+            source_lines = cell.source.splitlines()
+            stripped_lines = [ln.strip() for ln in source_lines if ln.strip()]
+            if stripped_lines:
+                first_line = stripped_lines[0]
+                writefile_match = writefile_pattern.match(first_line)
 
-        source_lines = cell.source.strip().splitlines()
-        if not source_lines:
-            continue
+                if writefile_match:
+                    java_filename = writefile_match.group(1)
+                    content_lines = source_lines[1:]  # drop %%writefile
+                    java_content = "\n".join(content_lines) + "\n"
+                else:
+                    continue
 
-        match = writefile_pattern.match(source_lines[0])
-        if not match:
-            continue
+                # write the file (same as before)
+                base_name, ext = os.path.splitext(java_filename)
+                output_path = os.path.join(output_dir, java_filename)
+                counter = 1
+                while os.path.exists(output_path):
+                    output_path = os.path.join(
+                        output_dir, f"{base_name}_{counter}{ext}"
+                    )
+                    counter += 1
 
-        java_filename = match.group(1)
-        java_content = "\n".join(source_lines[1:]) + "\n"
+                header_comment = f"// Extracted from {os.path.basename(nb_file)}, cell {cell_index}\n"
+                with open(output_path, "w", encoding="utf-8") as f:
+                    f.write(header_comment + java_content)
 
-        base_name, ext = os.path.splitext(java_filename)
-        output_path = os.path.join(output_dir, java_filename)
+                print(f"  Saved: {output_path}")
+                continue
 
-        # Handle duplicate filenames
-        counter = 1
-        while os.path.exists(output_path):
-            output_path = os.path.join(output_dir, f"{base_name}_{counter}{ext}")
-            counter += 1
+        # CASE 2 — Markdown cell with ```java fenced block AND a public class inside
+        if cell.cell_type == "markdown":
+            # Find all ```java ... ``` fenced blocks
+            matches = java_fence_pattern.findall(cell.source)
+            if not matches:
+                continue
 
-        # Add comment header showing notebook and cell index
-        header_comment = (
-            f"// Extracted from {os.path.basename(nb_file)}, cell {cell_index}\n"
-        )
-        full_content = header_comment + java_content
+            for block_index, java_block in enumerate(matches):
+                # Check for a public class declaration inside the fenced block
+                if "public class" not in java_block:
+                    continue
 
-        with open(output_path, "w", encoding="utf-8") as f:
-            f.write(full_content)
+                clean_block = java_block.strip() + "\n"
 
-        print(f"  Saved: {output_path}")
+                # Auto-generate filename
+                java_filename = f"NotebookCell_{cell_index}_{block_index}.java"
+                base_name, ext = os.path.splitext(java_filename)
+                output_path = os.path.join(output_dir, java_filename)
+
+                # Deduplicate filename
+                counter = 1
+                while os.path.exists(output_path):
+                    output_path = os.path.join(output_dir, f"{base_name}_{counter}{ext}")
+                    counter += 1
+
+                # Write file with header comment
+                header_comment = (
+                    f"// Extracted from {os.path.basename(nb_file)}, "
+                    f"markdown cell {cell_index}\n"
+                )
+
+                with open(output_path, "w", encoding="utf-8") as f:
+                    f.write(header_comment + clean_block)
+
+                print(f"  Saved: {output_path}")
 
 print("Done extracting Java files.")

@@ -1,4 +1,14 @@
-### That didn't work (HEAD -> main)
+### Began to add justfile, which will run things without much setup eventually (HEAD -> main)
+>Mon, 17 Nov 2025 10:40:19 -0600
+
+>Author: thegreekgeek (thegreekgeekster@gmail.com)
+
+>Commiter: thegreekgeek (thegreekgeekster@gmail.com)
+
+
+
+
+### That didn't work (origin/main, origin/HEAD)
 >Thu, 13 Nov 2025 13:40:47 -0600
 
 >Author: thegreekgeek (thegreekgeekster@gmail.com)
@@ -8,7 +18,7 @@
 
 
 
-### Maybe outputting it in html will work better... (origin/main, origin/HEAD)
+### Maybe outputting it in html will work better...
 >Thu, 13 Nov 2025 13:40:03 -0600
 
 >Author: thegreekgeek (thegreekgeekster@gmail.com)
