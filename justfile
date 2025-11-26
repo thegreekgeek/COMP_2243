@@ -2,8 +2,15 @@ set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
 default:
     @just --list
 
-run:
-    just cleanup download_lessons extract_exercises
+
+first_run:
+    just download_dependencies download_lessons extract_exercises cleanup
+
+[windows]
+download_dependencies:
+    @echo "downloading prerequisites..."
+    winget install Git.git
+    winget install Python.Python.3.10
 
 download_lessons:
     @echo "Pulling latest updates from brendan's repository..."
