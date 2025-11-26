@@ -1,4 +1,4 @@
 [submodule "programming_problem_solving"]
 	path = programming_problem_solving
-	url = https://github.com/brendanpshea/programming_problem_solving
+	url = https://github.com/brendanpshea/programming_problem_solving.git
 	branch = main
