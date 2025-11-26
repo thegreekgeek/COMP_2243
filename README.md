@@ -33,5 +33,5 @@ This will download the other requirements like python and git if you don't alrea
 
 ## TODO
 
-- Add a [justfile](https://just.systems) containing the commands to run this in windows and linux.
-- Include a one-liner to install git?
+- [x] Add a [justfile](https://just.systems) containing the commands to run this in windows and linux.
+- [x] Include a one-liner to install git?
