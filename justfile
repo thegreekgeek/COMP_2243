@@ -7,7 +7,7 @@ run:
 
 download_lessons:
     @echo "Pulling latest updates from brendan's repository..."
-    @git submodule update --recursive --remote
+    @git pull --recurse-submodules
 
 [unix]
 extract_exercises:
